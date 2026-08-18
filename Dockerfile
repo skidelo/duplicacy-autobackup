@@ -1,5 +1,6 @@
-FROM alpine:3.15.0
+FROM alpine:3.24.1
 MAINTAINER Christophe Tafani-Dereeper <christophe@tafani-dereeper.me>
+MAINTAINER Mark Hasemeyer <mark@hasemeyer.com>
 
 #--
 #-- Build variables
@@ -39,6 +40,7 @@ ENV BACKUP_SCHEDULE='* * * * *' \
 #-- Other steps
 #--
 RUN apk --no-cache add ca-certificates && update-ca-certificates
+RUN apk add --no-cache vim openssh-client
 RUN ARCH="$(uname -m)";\
     if [ "$ARCH" == "x86_64" ]; then \
         DUPLICACY_ARCH="x64"; \
